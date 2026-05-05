@@ -39,12 +39,15 @@ class _PersonelPageState extends State<PersonelPage> {
     "Durum Kontrol Kayıtları",
   ];
 
-  void selectPage(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
-    Navigator.pop(context);
-  }
+void selectPage(int index) {
+  setState(() {
+    selectedIndex = index;
+  });
+
+  Future.microtask(() {
+    if (mounted) Navigator.pop(context);
+  });
+}
 
   @override
   Widget build(BuildContext context) {
@@ -115,12 +118,14 @@ class _PersonelPageState extends State<PersonelPage> {
               leading: const Icon(Icons.logout),
               title: const Text("Logout"),
               onTap: () async {
+                final navigator = Navigator.of(context);
+
                 await userProvider.logout();
+
                 if (!mounted) return;
 
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (_) => const LoginPage()),
+                navigator.pushReplacement(
+                 MaterialPageRoute(builder: (_) => const LoginPage()),
                 );
               },
             ),

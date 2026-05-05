@@ -20,7 +20,7 @@ class _AdminReportsPageState extends State<AdminReportsPage> {
   void initState() {
   super.initState();
 
-  Future.microtask(() {
+   WidgetsBinding.instance.addPostFrameCallback((_) {
     context.read<MaintenanceProvider>().listenAllReports();
   });
   
@@ -37,9 +37,11 @@ class _AdminReportsPageState extends State<AdminReportsPage> {
   data: reports,
   statusField: (r) => r["status"],
   dateField: (r) =>(r["createdAt"] as Timestamp).toDate(),
+  
   searchMatch: (r, search) {
 
-    final date = (r["createdAt"] as Timestamp).toDate();
+    final ts = r["createdAt"];
+    final date = ts is Timestamp ? ts.toDate() : DateTime.now();
     final dateStr = "${date.day}.${date.month}.${date.year}";
 
     final isDateSearch = search.contains(".");

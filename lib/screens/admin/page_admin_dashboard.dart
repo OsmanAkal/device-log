@@ -21,6 +21,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
   void initState() {
     super.initState();
     Future.microtask(() {
+      if (!mounted) return;
       context.read<DeviceProvider>().startListening();
       context.read<MaintenanceProvider>().listenAllReports();
       

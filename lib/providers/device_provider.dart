@@ -47,7 +47,7 @@ class DeviceProvider extends ChangeNotifier {
     return true;
     }
     catch(e){
-      print(e);
+      debugPrint("error: $e");
       return false;
     }
  
@@ -66,7 +66,7 @@ class DeviceProvider extends ChangeNotifier {
   try {
     _devices = await _service.getDevices();
   } catch (e) {
-    print("error: $e");
+    debugPrint("error: $e");
   }
 
 

@@ -14,17 +14,18 @@ class UserReportsPage extends StatefulWidget {
 }
 
 class _UserReportsPageState extends State<UserReportsPage> {
-  @override
-  void initState() {
-    super.initState();
-    Future.microtask(() {
+@override
+void initState() {
+  super.initState();
 
-      final userId = context.read<UserProvider>().userId;
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    if (!mounted) return;
 
-      if (userId != null) {
-        context.read<MaintenanceProvider>().listenUserReports(userId);
-      }
+    final userId = context.read<UserProvider>().userId;
 
+    if (userId != null) {
+      context.read<MaintenanceProvider>().listenUserReports(userId);
+    }
   });
 }
 

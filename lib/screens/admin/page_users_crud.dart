@@ -274,7 +274,8 @@ void initState() {
               );
             return;
             }
-            
+            final navigator = Navigator.of(context);
+            final messenger = ScaffoldMessenger.of(context);
           final success = await context.read<UserProvider>().createUser(
             email: emailController.text.trim(),
             password: passwordController.text.trim(),
@@ -283,11 +284,11 @@ void initState() {
             rol: rol,
           );
 
-          if (!context.mounted) return;
-          Navigator.pop(context);
+          if (!mounted) return;
+          navigator.pop();
 
            if (!success) {
-            ScaffoldMessenger.of(context).showSnackBar(
+            messenger.showSnackBar(
             const SnackBar(content: Text("Kullanıcı oluşturulamadı")),
             );
             }
@@ -344,6 +345,7 @@ void initState() {
         actions: [
           TextButton(
             onPressed: () async{
+              final navigator = Navigator.of(context);
               await context.read<UserProvider>().updateUser(
               user["uid"],
               {
@@ -353,7 +355,9 @@ void initState() {
               },
               );
 
-            Navigator.pop(context);
+            if (!mounted) return;
+
+            navigator.pop();
             },
             child: const Text("Kaydet"),
           ),
@@ -364,9 +368,11 @@ void initState() {
 
 
   void deleteUser(String uid) async {
+    final messenger = ScaffoldMessenger.of(context);
     await context.read<UserProvider>().deleteUser(uid);
-    ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(content: Text("Kullanıcı silindi")),
-    );
+    if (!mounted) return;
+    messenger.showSnackBar(
+      const SnackBar(content: Text("Kullanıcı silindi")),
+      );
   }
 }

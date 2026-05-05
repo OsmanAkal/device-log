@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:device_log/widgets/widget_device_dialog.dart';
 import '../../providers/device_provider.dart';
@@ -19,20 +17,24 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   String selectedFilter = "çalışıyor";
+
 @override
 void initState() {
   super.initState();
-  Future.microtask(() {
-    final userId = context.read<UserProvider>().userId;
+
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    if (!mounted) return;
+
     context.read<DeviceProvider>().startListening();
 
-    if (userId != null) {
-        context.read<MaintenanceProvider>().listenUserReports(userId);
-      }
-  });
+    final userId = context.read<UserProvider>().userId;
 
-  
+    if (userId != null) {
+      context.read<MaintenanceProvider>().listenUserReports(userId);
+    }
+  });
 }
+
 bool showMaintenance = false;
 Map<String, dynamic>? selectedDevice;
   @override
@@ -41,8 +43,8 @@ Map<String, dynamic>? selectedDevice;
     final reports = context.watch<MaintenanceProvider>().reports;
 
     List filteredDevices = devices.where((d) {
-      return d["status"] == selectedFilter;
-      }).toList();
+  return (d["status"] ?? "") == selectedFilter;
+}).toList();
 
     return Scaffold(
       backgroundColor: Colors.white,

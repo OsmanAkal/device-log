@@ -60,7 +60,7 @@ Future<bool> login(String email, String password) async {
       return true;
 
     } catch (e) {
-      print("Provider login hata: $e");
+      debugPrint("Provider login hata: $e");
 
       _isLoading = false;
       notifyListeners();
@@ -116,7 +116,7 @@ void startListeningUsers() {
       notifyListeners();
     },
     onError: (e) {
-      print("stream error: $e");
+      debugPrint("stream error: $e");
       _usersLoading = false;
       notifyListeners();
     },
@@ -153,11 +153,11 @@ Future<bool> createUser({
 
   }  
   on FirebaseAuthException catch (e) {
-    print("FirebaseAuth hata: ${e.code} - ${e.message}");
+    debugPrint("FirebaseAuth hata: ${e.code} - ${e.message}");
     return false;
     }
     catch (e) {
-     print("createUser hata: $e");
+    debugPrint("createUser hata: $e");
     return false;
   }
 }
@@ -168,7 +168,7 @@ Future<void> updateUser(String uid, Map<String, dynamic> data) async {
     await _userService.updateUser(uid, data);
   } 
   catch (e) {
-    print("update hata: $e");
+    debugPrint("update hata: $e");
   }
 }
 
@@ -179,7 +179,7 @@ Future<void> deleteUser(String uid) async {
    
   } 
   catch (e) {
-    print("delete hata: $e");
+    debugPrint("delete hata: $e");
   }
 }
 

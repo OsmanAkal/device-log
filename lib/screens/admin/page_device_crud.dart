@@ -133,7 +133,7 @@ void initState() {
                   ),
 
                       title: Text(
-                        device["name"],
+                        (device["name"] ?? "").toString(),
                         style: const TextStyle(color: Colors.white),
                       ),
 
@@ -164,10 +164,12 @@ void initState() {
                                   child: const Text("Vazgeç"),
                                 ),
                                 TextButton(
-                                  onPressed: () {
-                                    context.read<DeviceProvider>().deleteDevice(device["id"]);
-                                    Navigator.pop(context);
-                                  },
+                                  onPressed: () async {
+                                    final navigator = Navigator.of(context);
+                                    await context.read<DeviceProvider>().deleteDevice(device["id"]);
+                                    if (!mounted) return;
+                                    navigator.pop();
+                                      },
                                   child: const Text("Sil"),
                                 ),
                               ],
@@ -260,6 +262,8 @@ void initState() {
                   );
                 return;
               }
+              final messenger = ScaffoldMessenger.of(context);
+              final navigator = Navigator.of(context);
               final success =  await context.read<DeviceProvider>().createDevice(
                 name: nameController.text.trim(),
                 serialNo: serialController.text.trim(),
@@ -267,13 +271,12 @@ void initState() {
                 location: locationController.text.trim(),
               );
 
-               if (!context.mounted) return;
-                Navigator.pop(context);
-
+               if (!mounted) return;
+                navigator.pop();
                if (!success) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                   const SnackBar(content: Text("Cihaz oluşturulamadı")),
-                  );
+                   messenger.showSnackBar(
+                  const SnackBar(content: Text("Cihaz oluşturulamadı")),
+                    );
                  }
             },
             child: const Text("Kaydet"),

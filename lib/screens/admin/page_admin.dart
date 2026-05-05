@@ -134,10 +134,12 @@ class _AdminPageState extends State<AdminPage>{
               leading: const Icon(Icons.logout),
               title: const Text("Logout"),
               onTap: () async {
+                final navigator = Navigator.of(context);
                 await userProvider.logout();
                 if (!mounted) return;
-                Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (_) => const LoginPage()),
+                
+                navigator.pushReplacement(
+                  MaterialPageRoute(builder: (_) => const LoginPage()),
                 );
               },
             ),

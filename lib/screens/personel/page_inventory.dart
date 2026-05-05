@@ -20,6 +20,7 @@ class _InventoryPageState extends State<InventoryPage> {
 void initState() {
   super.initState();
   WidgetsBinding.instance.addPostFrameCallback((_) {
+     if (!mounted) return;
     context.read<DeviceProvider>().startListening();
   });
 }
@@ -42,7 +43,7 @@ Map<String, dynamic>? selectedDevice;
 
 @override
 Widget build(BuildContext context) {
- 
+ if (selectedDevice == null) return const SizedBox();
 
   return Scaffold(
     backgroundColor: Colors.white,
@@ -143,7 +144,7 @@ Widget build(BuildContext context) {
                   ),
 
                       title: Text(
-                        device["name"],
+                        device["name"] ?? "",
                         style: const TextStyle(color: Colors.white),
                       ),
 
@@ -183,20 +184,6 @@ Widget build(BuildContext context) {
    ],),),);
   }
 
-  String formatDate(dynamic timestamp) {
-  if (timestamp == null) return "";
-
-  try {
-    final date = (timestamp as Timestamp).toDate();
-
-    String twoDigit(int n) => n.toString().padLeft(2, '0');
-
-    return "${twoDigit(date.day)}.${twoDigit(date.month)}.${date.year} "
-           "${twoDigit(date.hour)}:${twoDigit(date.minute)}";
-  } 
-  catch (e) {
-    return "";
-  }
-}
+ 
   
 }

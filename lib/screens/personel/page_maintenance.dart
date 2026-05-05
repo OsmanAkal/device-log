@@ -40,8 +40,10 @@ class _MaintenancePageState extends State<MaintenancePage> {
     final device = widget.device;
     final maintenance = context.watch<MaintenanceProvider>();
     final userProvider = context.watch<UserProvider>();
+    final user = userProvider.firebaseUser;
 
-
+    final messenger = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
 
     return PopScope(
       canPop: false,
@@ -136,37 +138,43 @@ class _MaintenancePageState extends State<MaintenancePage> {
             final picked = await picker.pickImage(source: ImageSource.camera);
 
             if (picked != null) {
-              selectedImage = File(picked.path);
+              setState(() {
+                selectedImage = File(picked.path);
+              });
             }
             }
-
+      
            if (status == "arızalı" && selectedImage == null) {
-            ScaffoldMessenger.of(context).showSnackBar(
-             const SnackBar(content: Text("Arızalı cihaz için fotoğraf zorunlu")),
-              );
+            setState(() => isLoading = false);
+            messenger.showSnackBar(
+            const SnackBar(content: Text("Arızalı cihaz için fotoğraf zorunlu")),
+            );
             return;
             }
+            
             if (noteController.text.trim().isEmpty) {
-            ScaffoldMessenger.of(context).showSnackBar(
-             const SnackBar(content: Text("Açıklama yazmak zorunludur")),
+              setState(() => isLoading = false);
+              messenger.showSnackBar(
+              const SnackBar(content: Text("Açıklama yazmak zorunludur")),
               );
-            return;
+              return;
             }
 
+          if (user == null) return;
         await maintenance.createReport(
           deviceId: device["id"],
           deviceName: device["name"] ?? "",
           serialNo: device["serialNo"] ?? "",
-          userId: userProvider.firebaseUser!.uid,
+          userId:  user.uid,
           userName: userProvider.userData?["name"] ?? "",
           status: status,
           note: noteController.text,
           imageFile: selectedImage,
         );
 
-        if (!context.mounted) return;
+        if (!mounted) return;
 
-        ScaffoldMessenger.of(context).showSnackBar(
+        messenger.showSnackBar(
           const SnackBar(content: Text("Rapor kaydedildi")),
         );
 
@@ -179,9 +187,9 @@ class _MaintenancePageState extends State<MaintenancePage> {
         widget.onBack();
 
       } finally {
-        setState(() {
-          isLoading = false;
-        });
+        if (mounted) {
+      setState(() => isLoading = false);
+    }
     }
   },
           child: isLoading
