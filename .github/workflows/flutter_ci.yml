@@ -8,6 +8,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      FIREBASE_TOKEN: ${{ secrets.DEVICE_LOG_FIREBASE }}
+
     steps:
       - name: Repo'yu çek
         uses: actions/checkout@v3
@@ -15,7 +18,13 @@ jobs:
       - name: Flutter kur
         uses: subosito/flutter-action@v2
         with:
-         flutter-version: '3.x'
+          flutter-version: '3.x'
+
+      - name: Firebase config oluştur
+        shell: bash
+        run: |
+          mkdir -p android/app
+          echo "${{ secrets.FIREBASE_JSON }}" | base64 --decode > android/app/google-services.json
 
       - name: Paketleri yükle
         run: flutter pub get
@@ -34,9 +43,6 @@ jobs:
 
       - name: Firebase App Distribution'a gönder
         run: |
-         firebase appdistribution:distribute build/app/outputs/flutter-apk/app-release.apk \
-         --1:399204907929:android:f63a7c51492deba1da3108 \
-         --groups "testers"
-    env:
-      FIREBASE_TOKEN: ${{ secrets.DEVICE_LOG_FIREBASE }}
-
+          firebase appdistribution:distribute build/app/outputs/flutter-apk/app-release.apk \
+            --app 1:399204907929:android:f63a7c51492deba1da3108 \
+            --groups "testers"
