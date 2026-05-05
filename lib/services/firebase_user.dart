@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 
 class FirebaseUserService {
 
@@ -17,7 +18,7 @@ class FirebaseUserService {
 
       return null;
     } catch (e) {
-      print("User fetch hata: $e");
+      debugPrint("User fetch hata: $e");
       return null;
     }
   }
@@ -65,7 +66,7 @@ Stream<QuerySnapshot<Map<String, dynamic>>> getUsersStream() {
 
   } 
   catch (e) {
-  print("create user error: $e");
+  debugPrint("create user error: $e");
    rethrow;
   } 
   

@@ -43,7 +43,6 @@ class _MaintenancePageState extends State<MaintenancePage> {
     final user = userProvider.firebaseUser;
 
     final messenger = ScaffoldMessenger.of(context);
-    final navigator = Navigator.of(context);
 
     return PopScope(
       canPop: false,
@@ -93,7 +92,7 @@ class _MaintenancePageState extends State<MaintenancePage> {
           const SizedBox(height: 18),
 
           DropdownButtonFormField<String>(
-            value: status,
+            initialValue: status,
             items: const [
               DropdownMenuItem(value: "çalışıyor", child: Text("Çalışıyor")),
               DropdownMenuItem(value: "arızalı", child: Text("Arızalı")),

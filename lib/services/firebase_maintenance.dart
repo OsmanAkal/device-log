@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'dart:io';
 
@@ -100,7 +101,7 @@ Future<String?> uploadImage(File image, String userId, String deviceId) async {
 
     return url;
   } catch (e) {
-    print("Upload error: $e");
+    debugPrint("Upload error: $e");
     return null;
   }
 }
@@ -108,7 +109,7 @@ Future<String?> uploadImage(File image, String userId, String deviceId) async {
 Future<File?> _compressImage(File file) async {
   final result = await FlutterImageCompress.compressAndGetFile(
     file.absolute.path,
-    file.absolute.path + "_compressed.jpg",
+    "${file.absolute.path}_compressed.jpg",
     quality: 60, // 🔥 kalite düşür → boyut düşer
     minWidth: 1024,
     minHeight: 1024,

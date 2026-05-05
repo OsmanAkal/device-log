@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 
 class FirebaseAuthService {
 
@@ -17,7 +18,7 @@ class FirebaseAuthService {
 
       return result.user;
     } catch (e) {
-      print("Auth hata: $e");
+      debugPrint("Auth hata: $e");
       return null;
     }
   }
