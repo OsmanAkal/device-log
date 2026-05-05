@@ -43,7 +43,7 @@ final List<String> statusOptions;
 
               Expanded(
                 child: DropdownButtonFormField<String>(
-                  value: filter.status,
+                  initialValue: filter.status,
                   decoration: InputDecoration( 
                     filled: true,
                     fillColor: Colors.grey.shade100,
@@ -66,7 +66,7 @@ final List<String> statusOptions;
 
               Expanded(
                 child: DropdownButtonFormField<String>(
-                  value: filter.sort,
+                  initialValue: filter.sort,
                        decoration: InputDecoration( 
                     filled: true,
                     fillColor: Colors.grey.shade100,
