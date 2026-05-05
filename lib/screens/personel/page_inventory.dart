@@ -43,7 +43,7 @@ Map<String, dynamic>? selectedDevice;
 
 @override
 Widget build(BuildContext context) {
- if (selectedDevice == null) return const SizedBox();
+
 
   return Scaffold(
     backgroundColor: Colors.white,
