@@ -125,20 +125,33 @@ Admin yetkisine sahip kullanıcı sadece buraya erişebilir.
 - Kullanıcı kaldırma
 
 ### 6. Ekran Görüntüleri
-![Giriş Ekranı](assets/screenshots/14.jpeg)
 
-![Admin Kontrol Paneli](assets/screenshots/5.jpeg)
-![Admin Menü Ekranı](assets/screenshots/12.jpeg)
-![Admin Envanter Ekranı](assets/screenshots/3.jpeg)
-![Admin Kullanıcı Yönetimi Ekranı](assets/screenshots/11.jpeg)
-![Admin Durum Raporları Ekranı](assets/screenshots/2.jpeg)
-![Rapor Görüntüleme ](assets/screenshots/7.jpeg)
+####  Giriş
+<img src="assets/screenshots/14.jpeg" width="250"/>
 
-![Personel Kontrol Paneli](assets/screenshots/16.jpeg)
-![Personel Menü Ekranı](assets/screenshots/6.jpeg)
-![Personel Envanter Ekranı](assets/screenshots/15.jpeg)
-![Personel Durum Raporları Ekranı](assets/screenshots/8.jpeg)
-![Personel Rapor Oluşturma Ekranı](assets/screenshots/10.jpeg)
+---
+
+####  Admin Ekranları
+
+| Kontrol Paneli | Menü | Envanter |
+|:-:|:-:|:-:|
+| <img src="assets/screenshots/5.jpeg" width="220"/> | <img src="assets/screenshots/12.jpeg" width="220"/> | <img src="assets/screenshots/3.jpeg" width="220"/> |
+
+| Kullanıcı Yönetimi | Durum Raporları | Rapor Görüntüleme |
+|:-:|:-:|:-:|
+| <img src="assets/screenshots/11.jpeg" width="220"/> | <img src="assets/screenshots/2.jpeg" width="220"/> | <img src="assets/screenshots/7.jpeg" width="220"/> |
+
+---
+
+####  Personel Ekranları
+
+| Kontrol Paneli | Menü | Envanter |
+|:-:|:-:|:-:|
+| <img src="assets/screenshots/16.jpeg" width="220"/> | <img src="assets/screenshots/6.jpeg" width="220"/> | <img src="assets/screenshots/15.jpeg" width="220"/> |
+
+| Durum Raporları | Rapor Oluşturma |
+|:-:|:-:|
+| <img src="assets/screenshots/8.jpeg" width="220"/> | <img src="assets/screenshots/10.jpeg" width="220"/> |
 
 
 
