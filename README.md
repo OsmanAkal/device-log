@@ -125,20 +125,20 @@ Admin yetkisine sahip kullanıcı sadece buraya erişebilir.
 - Kullanıcı kaldırma
 
 ### 6. Ekran Görüntüleri
-![Giriş Ekranı](assets/screenshots/14.png)
+![Giriş Ekranı](assets/screenshots/14.jpeg)
 
-![Admin Kontrol Paneli](assets/screenshots/5.png)
-![Admin Menü Ekranı](assets/screenshots/12.png)
-![Admin Envanter Ekranı](assets/screenshots/3.png)
-![Admin Kullanıcı Yönetimi Ekranı](assets/screenshots/11.png)
-![Admin Durum Raporları Ekranı](assets/screenshots/2.png)
-![Rapor Görüntüleme ](assets/screenshots/7.png)
+![Admin Kontrol Paneli](assets/screenshots/5.jpeg)
+![Admin Menü Ekranı](assets/screenshots/12.jpeg)
+![Admin Envanter Ekranı](assets/screenshots/3.jpeg)
+![Admin Kullanıcı Yönetimi Ekranı](assets/screenshots/11.jpeg)
+![Admin Durum Raporları Ekranı](assets/screenshots/2.jpeg)
+![Rapor Görüntüleme ](assets/screenshots/7.jpeg)
 
-![Personel Kontrol Paneli](assets/screenshots/16.png)
-![Personel Menü Ekranı](assets/screenshots/6.png)
-![Personel Envanter Ekranı](assets/screenshots/15.png)
-![Personel Durum Raporları Ekranı](assets/screenshots/8.png)
-![Personel Rapor Oluşturma Ekranı](assets/screenshots/10.png)
+![Personel Kontrol Paneli](assets/screenshots/16.jpeg)
+![Personel Menü Ekranı](assets/screenshots/6.jpeg)
+![Personel Envanter Ekranı](assets/screenshots/15.jpeg)
+![Personel Durum Raporları Ekranı](assets/screenshots/8.jpeg)
+![Personel Rapor Oluşturma Ekranı](assets/screenshots/10.jpeg)
 
 
 
